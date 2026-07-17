@@ -120,21 +120,28 @@
     </div>
   </section>
 
-  <section style="padding:100px 48px;max-width:1200px;margin:0 auto;">
-    <div style="font-family:'Anton',sans-serif;font-size:52px;color:#e8394f;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;">Mitgliedschaft</div>
-    <h2 style="font-family:'Anton',sans-serif;font-size:34px;text-transform:uppercase;margin:0 0 56px;max-width:600px;">Jahresbeitrag, keine versteckten Kosten.</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
-      <sc-for list="{{ pricing }}" as="p" hint-placeholder-count="2">
-        <div style="background:#191817;border-radius:20px;padding:36px;border:1px solid rgba(242,237,232,0.06);">
-          <div style="font-size:15px;color:#a8a29e;margin-bottom:12px;">{{ p.age }}</div>
-          <div style="font-family:'Anton',sans-serif;font-size:44px;color:#e8394f;margin-bottom:12px;">{{ p.price }}</div>
-          <div style="font-size:15px;color:#c4bdb5;">{{ p.desc }}</div>
-        </div>
-      </sc-for>
+  <section style="padding:100px 48px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:flex-start;">
+    <div>
+      <div style="font-family:'Anton',sans-serif;font-size:52px;color:#e8394f;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;">Mitgliedschaft</div>
+      <h2 style="font-family:'Anton',sans-serif;font-size:34px;text-transform:uppercase;margin:0 0 56px;max-width:600px;">Jahresbeitrag, keine versteckten Kosten.</h2>
+      <div style="display:grid;grid-template-columns:1fr;gap:24px;">
+        <sc-for list="{{ pricing }}" as="p" hint-placeholder-count="2">
+          <div style="background:#191817;border-radius:20px;padding:36px;border:1px solid rgba(242,237,232,0.06);">
+            <div style="font-size:15px;color:#a8a29e;margin-bottom:12px;">{{ p.age }}</div>
+            <div style="font-family:'Anton',sans-serif;font-size:44px;color:#e8394f;margin-bottom:12px;">{{ p.price }}</div>
+            <div style="font-size:15px;color:#c4bdb5;">{{ p.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
     </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;background:rgba(232,57,79,0.1);border:1px solid rgba(232,57,79,0.3);border-radius:20px;padding:32px 40px;">
-      <div style="font-size:17px;max-width:560px;"><strong>Erst testen, dann entscheiden.</strong> 3–4 Wochen kostenloses Probetraining für alle Neueinsteiger.</div>
-      <a href="#top" style="background:#e8394f;color:#fff;padding:16px 28px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;" style-hover="background:#c92e42;">Jetzt anmelden</a>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(242,237,232,0.06);background:#1c1b19;">
+        <img src="./assets/membership-photo.jpg" alt="Trainingsgruppe" style="width:100%;height:auto;display:block;">
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;background:rgba(232,57,79,0.1);border:1px solid rgba(232,57,79,0.3);border-radius:20px;padding:32px 40px;">
+        <div style="font-size:15px;max-width:300px;"><strong>Erst testen, dann entscheiden.</strong> 3–4 Wochen kostenloses Probetraining für alle Neueinsteiger.</div>
+        <a href="#kontakt" style="background:#e8394f;color:#fff;padding:16px 28px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;" style-hover="background:#c92e42;">Jetzt anmelden</a>
+      </div>
     </div>
   </section>
 
@@ -175,7 +182,14 @@
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
         <sc-for list="{{ vorstand }}" as="v" hint-placeholder-count="4">
           <div style="text-align:center;">
-            <div style="width:88px;height:88px;border-radius:50%;background:#1c1b19;border:2px solid #e8394f;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:22px;color:#e8394f;margin:0 auto 16px;">{{ v.initials }}</div>
+            <div style="width:88px;height:88px;border-radius:50%;background:#1c1b19;border:2px solid #e8394f;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:22px;color:#e8394f;margin:0 auto 16px;overflow:hidden;">
+              <sc-if value="{{ v.name === 'Ahmet Özcorapci' }}" hint-placeholder-val="{{ true }}">
+                <img src="./assets/instagram-01.jpg" alt="{{ v.name }}" style="width:100%;height:100%;object-fit:cover;">
+              </sc-if>
+              <sc-if value="{{ v.name !== 'Ahmet Özcorapci' }}" hint-placeholder-val="{{ false }}">
+                <span>{{ v.initials }}</span>
+              </sc-if>
+            </div>
             <div style="font-weight:700;font-size:16px;margin-bottom:4px;">{{ v.name }}</div>
             <div style="font-size:13px;color:#8f887f;">{{ v.role }}</div>
           </div>
